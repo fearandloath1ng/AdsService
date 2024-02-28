@@ -1,11 +1,11 @@
-using Itmo.Dev.Platform.Postgres.Extensions;
-using Itmo.Dev.Platform.Postgres.Plugins;
+namespace AdsService.Infrastructure.Persistence.Extensions;
+
 using AdsService.Application.Abstractions.Persistence;
 using AdsService.Infrastructure.Persistence.Migrations;
 using AdsService.Infrastructure.Persistence.Plugins;
+using Itmo.Dev.Platform.Postgres.Extensions;
+using Itmo.Dev.Platform.Postgres.Plugins;
 using Microsoft.Extensions.DependencyInjection;
-
-namespace AdsService.Infrastructure.Persistence.Extensions;
 
 public static class ServiceCollectionExtensions
 {

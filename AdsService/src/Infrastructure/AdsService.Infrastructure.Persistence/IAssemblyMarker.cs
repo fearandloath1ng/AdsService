@@ -1,5 +1,3 @@
 namespace AdsService.Infrastructure.Persistence;
 
-internal interface IAssemblyMarker
-{
-}
+internal interface IAssemblyMarker { }

@@ -1,6 +1,6 @@
-using Microsoft.Extensions.DependencyInjection;
-
 namespace AdsService.Application.Extensions;
+
+using Microsoft.Extensions.DependencyInjection;
 
 public static class ServiceCollectionExtensions
 {
