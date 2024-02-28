@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+        <ProjectReference Include="..\AdsService.Application.Abstractions\AdsService.Application.Abstractions.csproj"/>
+        <ProjectReference Include="..\AdsService.Application.Contracts\AdsService.Application.Contracts.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions"/>
+    </ItemGroup>
+
+</Project>

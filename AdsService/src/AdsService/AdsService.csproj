@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <ItemGroup>
+        <ProjectReference Include="..\Application\AdsService.Application\AdsService.Application.csproj"/>
+        <ProjectReference Include="..\Infrastructure\AdsService.Infrastructure.Persistence\AdsService.Infrastructure.Persistence.csproj"/>
+        <ProjectReference Include="..\Presentation\AdsService.Presentation.Grpc\AdsService.Presentation.Grpc.csproj"/>
+        <ProjectReference Include="..\Presentation\AdsService.Presentation.Kafka\AdsService.Presentation.Kafka.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Itmo.Dev.Platform.Logging"/>
+        <PackageReference Include="Itmo.Dev.Platform.YandexCloud"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Update="appsettings.*.json">
+            <DependentUpon>appsettings.json</DependentUpon>
+        </Content>
+    </ItemGroup>
+
+</Project>
