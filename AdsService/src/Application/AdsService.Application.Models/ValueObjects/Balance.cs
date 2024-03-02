@@ -16,7 +16,7 @@ public readonly struct Balance
         Kopecks = 0;
     }
 
-    public bool CanPay(Cost cost)
+    public bool CanPay(Money cost)
     {
         return Kopecks >= cost.Kopecks;
     }
