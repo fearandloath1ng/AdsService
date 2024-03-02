@@ -10,21 +10,20 @@ public class Post(User user, PostContent content)
 
     public PostContent Content { get; } = content;
 
-    public PostStatus ModerationStatus { get; private set; } = PostStatus.Moderation;
+    public PostStatus ModerationStatus =>
+        Check is null ? PostStatus.Moderation : (Check.Result ? PostStatus.Approved : PostStatus.Rejected);
 
     private Check? Check { get; set; }
 
     public void Approve(Moderator moderator)
     {
         ThrowIfNotOnModeration();
-        ModerationStatus = PostStatus.Approved;
         Check = Check.ApproveCheck(this, moderator);
     }
 
     public void Reject(Moderator moderator, Reason reason)
     {
         ThrowIfNotOnModeration();
-        ModerationStatus = PostStatus.Rejected;
         Check = Check.RejectCheck(this, moderator, reason);
     }
 
