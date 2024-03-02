@@ -9,7 +9,7 @@ public interface IPostService
 
     public PostStatus GetStatus(Jwt jwt, Guid postId);
 
-    public bool TryGetRejectionReason(Jwt jwt, Guid postId, out string rejectionReason);
+    public bool TryGetRejectionReason(Jwt jwt, Guid postId, out Reason rejectionReason);
 
     public IReadOnlyCollection<PostDto> GetAllPostsForModeration(Jwt jwt);
 
