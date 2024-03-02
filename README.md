@@ -1,4 +1,4 @@
-## Команда №28 - Сервис для создания рекламы в инстаграме и телеграме"
+## Команда №28 - "Сервис для создания рекламы в инстаграме и телеграме"
 
 ## Состав команды:
 - Кахикало Кирилл Романович
@@ -9,250 +9,40 @@
 - Манукян Даниил Алексеевич
 
 ## Доменные сущности:
-### User
-
 ```
-public readonly struct UserMail 
 {
-    public string Mail { get; }
-    
-    public UserMail(string mail)
-    {
-        Mail = mail;
-        if (mail.Length > 30) 
-            throw new ArgumentException("Mail length can't exceed 30 symbols.", nameof(mail));
-    }
-    
-    public UserMail() 
-    {
-        Mail = "Empty mail";
-    }
-}
-
-public readonly struct UserName 
-{
-    public string Name { get; }
-    
-    public UserName(string name)
-    {
-        Name = name;
-        if (name.Length > 30) 
-            throw new ArgumentException("Name length can't exceed 30 symbols.", nameof(name));
-    }
-    
-    public UserName() 
-    {
-        Name = "Empty name";
-    }
-}
-
-public readonly struct UserBalance 
-{
-    public decimal Balance { get; }
-    
-    public UserBalance(decimal balance)
-    {
-        Balance = balance;
-        if (balance < 0) 
-            throw new ArgumentException("Balance can't be less than 0.");
-    }
-    
-    public UserBalance() 
-    {
-        Balance = 0;
-    }
-}
-
-
-public class User
-{
-    public Guid Id { get; }
-    public UserMail Mail { get; }
-    public UserName Name { get; }
-    public UserBalance Balance { get; }
-
-    public User(UserMail mail, UserName name) {
-        Id = Guid.NewGuid();
-        Mail = mail;
-        Name = name;
-        Balance = new UserBalance();
-    }
-}
-```
-
-### Post
-
-```
-public readonly struct PostContent
-{
-	public string Text { get; }
-	
-	public PostContent(string text)
-	{
-		Text = text;
-		 if (text.Length > 1024) 
-            throw new ArgumentException("Content length can't exceed 1024 symbols.", nameof(name));
-		
-	}
-	
-	public PostContent() 
-	{
-		Text = "Empty content"
-	}
-}
-
-public enum PostStatus 
-{
-	Moderation,
-	Approved,
-	Rejected
-}
-
-public class Post
-{
-    public Guid Id { get; }
-    public Guid UserId { get; }
-    public PostContent Content { get; }
-    public PostStatus ModerationStatus { get; }
-    
-    public Post(User user, PostContent content)
-    {
-    	Id = Guid.NewGuid();
-    	UserId = user.id;
-    	Content = content;
-    	ModerationStatus = PostStatus.Moderation;
-    }
-    
-    public void Approve() 
-    {
-    	TrowIfNotOnModeration();
-    	ModerationStatus = PostStatus.Approved;
-    }
-    
-    public void Reject() 
-    {
-    	TrowIfNotOnModeration();
-    	ModerationStatus = PostStatus.Rejected;
-    }
-    
-    private void ThrowIfNotOnModeration()
-    {
-    	if (ModerationStatus != PostStatus.Moderation)
-    		trow one InvalidOperationException("Post is not on moderation.")
-    }
-}
-```
-
-### Moderator
-
-```
-public readonly struct PasswordHash
-{
-    public string Password {get;}
-    
-    public PasswordHash(string mail)
-    {
-        Password = password;
-        if (password.Length > 50)
-        throw new ArgumentException("Password length can't exceed 50 symbols.", nameof(password));
-    }
-    
-    public PasswordHash()
-    {
-        Mail = "Empty password";
-    }
-}
-
-public class Moderator
-{
-    public Guid Id { get; }
-    public UserMail Mail { get; }
-    public PasswordHash Password { get; }
-    
-    public Moderator(UserMail Mail, PasswordHash Password){
-        Id = Guid.NewGuid();
-        Mail = mail;
-        Password = password;
-    }
-}
-```
-
-### AdCampaign
-```
-public readonly struct AdCampaignCost 
-{
-    public decimal Cost { get; }
-    
-    public AdCampaignCost(decimal cost)
-    {
-        Cost = cost;
-        if (cost < 0) 
-            throw new ArgumentException("Cost can't be less than 0.");
-    }
-    
-    public AdCampaignCost() 
-    {
-        Cost = 0;
-    }
-}
-
-public class AdCampaign
-{
-    public Guid Id { get; }
-    public Guid PostId { get; }
-    public Guid UserId { get; }
-    public AdCampaignCost Cost { get; }
-    public TimeSpan Duration { get; }
-    public IsActive IsActive { get; }
-    
-    public AdCampaign(AdCampaignCost cost, TimeSpan duration, IsActive isActive) {
-        Id = Guid.NewGuid();
-        PostId = Guid.NewGuid();
-        UserId = Guid.NewGuid();
-        Cost = cost;
-        Duration = duration;
-        IsActive = isActive;
-    }
-}
-```
-
-### Check
-
-```
-public readonly struct Reason 
-{
-    public decimal Reason { get; }
-	  public decimal Result { get; }
-    
-    public Reason(decimal reason)
-    {
-        Result = result;
-		    Reason = reason;
-        if (result = 1 & reason != '') 
-            throw new ArgumentException("Result error.");
-    }
-    
-    public UserBalance() 
-    {
-        Result = 0;
-    }
-}
-
-
-public class Check
-{
-    public Guid Id { get; }
-    public Guid ModeratorId { get; }
-    public Guid PostId { get; }
-    public bool Result { get; }
-	  public CheckReason Reason { get; }
-
-    public Check(Guid ModeratorId, Guid PostId, bool Result, CheckReason Reason) {
-        Id = Guid.NewGuid();
-        Post = PostId;
-        Result = result;
-        Reason = new CheckReason();
-    }
+  "User": {
+    "Id": ["guid", "not null", "length<30", "unique"],
+    "Mail": ["string", "length<30"],
+    "Name": ["string", "length<30"],
+    "Balance": ["decimal", "balance>0"]
+  },
+  "Post": {
+    "Id": ["guid", "not null", "length<30", "unique"],
+    "UserId": ["guid", "not null", "length<30", "unique"],
+    "Content": ["string", "length<500"],
+    "ModerationStatus": ["string"]
+  },
+  "Moderator": {
+    "Id": ["guid", "not null", "length<30", "unique"],
+    "Mail": ["string", "length<30"],
+    "Password": ["string", "length<30"]
+  }
+  "AdCampaign": {
+    "Id": ["guid", "not null", "length<30", "unique"],
+    "PostId": ["guid", "not null", "length<30", "unique"],
+    "UserId": ["guid", "not null", "length<30", "unique"],
+    "Cost": ["decimal", "balance>0"],
+    "Duration": ["timespan"],
+    "IsActive": ["bool"]
+  },
+  "Check": {
+    "Id": ["guid", "not null", "length<30", "unique"],
+    "ModeratorId": ["guid", "not null", "length<30", "unique"],
+    "PostId": ["guid", "not null", "length<30", "unique"],
+    "Result": ["bool"],
+    "Reason": ["string", "length<100"]
+  }
 }
 ```
 
