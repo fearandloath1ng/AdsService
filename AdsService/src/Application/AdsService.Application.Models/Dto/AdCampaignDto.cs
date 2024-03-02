@@ -1,3 +1,6 @@
 namespace AdsService.Application.Models.Dto;
 
-public record AdCampaignDto(Guid Id, Guid PostId, Guid UserId, AdCampaignCost Cost, TimeSpan Duration, IsActive IsActive);
+using AdsService.Application.Models.ValueObjects;
+
+public record AdCampaignDto(Guid Id, Guid PostId, Guid UserId, Cost Cost, DateTime StartedAt, TimeSpan Duration,
+    bool IsActive);

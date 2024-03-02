@@ -1,3 +1,5 @@
 namespace AdsService.Application.Models.Dto;
 
-public record UserDto(Guid Id, UserName Name, UserBalance Balance);
+using AdsService.Application.Models.ValueObjects;
+
+public record UserDto(Guid Id, Name Name, Balance Balance);
