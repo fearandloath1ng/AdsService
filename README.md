@@ -48,11 +48,7 @@
 
 Регистрация клиента - `POST api/v1/users/registration`  
 request - `{"userMail": "vasyavasin@gmail.com", "PasswordHash": "VerySafePassword1234!"}`  
-response - `{"codeAnswer": "12345"}`
-
-Проверка регистрации - `POST api/v1/users/code-check`  
-request - `{"codeAnswer": "12345"}`  
-response - `{"message": "You've successfully registered."}`
+response - `{"message": "You're successfully registered"}`
 
 Аутентификация клиента - `POST api/v1/users/authentication`  
 request - `{"userMail": "vasyavasin@gmail.com", "PasswordHash": "VerySafePassword1234!"}`  
@@ -61,6 +57,16 @@ response - `{"token": "xxxxx.yyyyy.zzzzz"}`
 Создание поста - `POST api/v1/posts/create`  
 request - `{"text": "blablabla", "picture": "imageUrl", "token": "xxxxx.yyyyy.zzzzz"}`  
 response - `{"message": "The post is successfully created."}`
+
+Получение постов на модерацию - `POST api/v1/moderator/moderate`
+request - `{"postId": "123abc"}`
+response - `{"message": "post is on moderation"}`
+
+Принятие поста - `GET api/v1/moderator/approve`
+response - `{"message": "post is approved"}`
+
+Отклонение поста - `GET api/v1/moderator/decline`
+response - `{"message": "post is declined"}`
 
 Проверка поста - `POST api/v1/posts/{postId}/list`  
 request - `{"postId": "123abc"}`  
