@@ -135,3 +135,5 @@ response - `{"campaignId": "4w5l6jn4wlk5j6nw4lk56", "views": 1000, "clicks": 500
 ### Просмотр аналитики кампании
 Клиент может посмотреть аналитику для любой кампании, 
 которую он когда-либо запускал.
+
+![diagram](https://github.com/AngryRectangle/AdsService/assets/95246399/cf694d5c-7c6e-4c81-b3e9-1eb90ba56f1e)
