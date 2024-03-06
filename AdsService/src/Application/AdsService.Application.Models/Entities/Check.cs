@@ -5,31 +5,27 @@ using AdsService.Application.Models.ValueObjects;
 public class Check
 {
     public Guid Id { get; }
-
-    public Guid ModeratorId { get; }
-
-    public Guid PostId { get; }
-
-    public bool Result { get; }
-
+    public Moderator Moderator { get; }
+    public Post Post { get; }
+    public CheckResult Result { get; }
     public Reason Reason { get; }
 
-    private Check(Post post, Moderator moderator, bool result, Reason reason)
+    public Check(Post post, Moderator moderator, CheckResult result, Reason reason)
     {
         Id = Guid.NewGuid();
-        ModeratorId = moderator.Id;
-        PostId = post.Id;
+        Moderator = moderator ?? throw new ArgumentNullException(nameof(moderator));
+        Post = post ?? throw new ArgumentNullException(nameof(post));
         Result = result;
         Reason = reason;
     }
 
     public static Check ApproveCheck(Post post, Moderator moderator)
     {
-        return new(post, moderator, true, default);
+        return new Check(post, moderator, true, default);
     }
 
     public static Check RejectCheck(Post post, Moderator moderator, Reason reason)
     {
-        return new(post, moderator, false, reason);
+        return new Check(post, moderator, false, reason);
     }
 }
