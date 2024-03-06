@@ -52,25 +52,36 @@ response - `{"message": "You're successfully registered"}`
 
 Аутентификация клиента - `POST api/v1/users/authentication`  
 request - `{"userMail": "vasyavasin@gmail.com", "PasswordHash": "VerySafePassword1234!"}`  
-response - `{"token": "xxxxx.yyyyy.zzzzz"}`
+response - `{"message": "You're logged in", "user": {"token": "xxxxx.yyyyy.zzzzz"}}`
 
 Создание поста - `POST api/v1/posts/create`  
 request - `{"text": "blablabla", "picture": "imageUrl", "token": "xxxxx.yyyyy.zzzzz"}`  
-response - `{"message": "The post is successfully created."}`
+response - ```json{  
+    "message": "The post is successfully created.",  
+    "post": {  
+        "postId": "123abc",  
+        "text": "blablabla",  
+        "picture": "imageUrl"  
+        }  
+    }```
 
-Получение постов на модерацию - `POST api/v1/moderator/moderate`
-request - `{"postId": "123abc"}`
-response - `{"message": "post is on moderation"}`
+Получение постов на модерацию - `POST api/v1/moderator/moderate`  
+request - ```json{
+    "posts": [
+    {
+     "postId": "123abc",
+     "text": "blablabla", 
+     "picture": "imageUrl"
+    }
+    ]
+}```  
+response - `{"message": "posts are on moderation"}`
 
-Принятие поста - `GET api/v1/moderator/approve`
-response - `{"message": "post is approved"}`
+Принятие поста - `GET api/v1/moderator/approve`  
+response - `{"message": "post is approved", "postId": "123abc"}`
 
-Отклонение поста - `GET api/v1/moderator/decline`
-response - `{"message": "post is declined"}`
-
-Проверка поста - `POST api/v1/posts/{postId}/list`  
-request - `{"postId": "123abc"}`  
-response - `{"message": "post approved"}`
+Отклонение поста - `GET api/v1/moderator/decline`  
+response - `{"message": "post is declined", "postId": "123abc"}`
 
 Пополнение баланса - `POST api/v1/balance/replenish`  
 request - `{"token": "xxxxx.yyyyy.zzzzz", "amount":100.00}`  
@@ -78,7 +89,15 @@ response - `{"message":"Balance successfully replenished."}`
 
 Запуск рекламной кампании - `POST api/v1/ad-campaigns/start`  
 request - `{"token": "xxxxx.yyyyy.zzzzz", "postId":"123cde", "price": 50.00, "duration": "24:00:00"}`  
-response - `{"compaignId":"4w5l6jn4wlk5j6nw4lk56"}`
+response - ```json{
+    "message": "The campaign is successfully created.", 
+    "campaign": {
+        "campaignId": "4w5l6jn4wlk5j6nw4lk56",
+        "postId":"123cde",
+        "price": 50.00,
+        "duration": "24:00:00"
+    }
+}```
 
 Остановка рекламной кампании - `POST api/v1/ad-campaigns/stop`  
 request - `{"token": "xxxxx.yyyyy.zzzzz", "campaignId":"4w5l6jn4wlk5j6nw4lk56"}`  
@@ -86,6 +105,18 @@ response - `{"message":"Ad campaign successfully stopped."}`
 
 Просмотр аналитики кампании - `GET api/v1/ad-campaigns/{campaignId}/analytics`
 response - `{"campaignId": "4w5l6jn4wlk5j6nw4lk56", "views": 1000, "clicks": 500, "conversions": 50}`
+
+Просмотр списка аналитики кампаний - GET api/v1/ad-campaigns/analytics  
+response - ```json{
+    "analytics": [
+        {
+         "campaignId": "4w5l6jn4wlk5j6nw4lk56",
+         "views": 1000,
+         "clicks": 500, 
+         "conversions": 50
+        }
+    ]
+}```
 
 
 ## Бизнес-процессы
