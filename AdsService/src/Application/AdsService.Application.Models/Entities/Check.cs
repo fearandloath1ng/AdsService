@@ -2,6 +2,12 @@ namespace AdsService.Application.Models.Entities;
 
 using AdsService.Application.Models.ValueObjects;
 
+public enum CheckResult
+{
+    Approved,
+    Rejected
+}
+
 public class Check
 {
     public Guid Id { get; }
@@ -10,7 +16,7 @@ public class Check
     public CheckResult Result { get; }
     public Reason Reason { get; }
 
-    public Check(Post post, Moderator moderator, CheckResult result, Reason reason)
+    private Check(Post post, Moderator moderator, CheckResult result, Reason reason)
     {
         Id = Guid.NewGuid();
         Moderator = moderator ?? throw new ArgumentNullException(nameof(moderator));
