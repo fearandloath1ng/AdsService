@@ -56,7 +56,7 @@ response - `{"message": "You're logged in", "user": {"token": "xxxxx.yyyyy.zzzzz
 
 Создание поста - `POST api/v1/posts/create`  
 request - `{"text": "blablabla", "picture": "imageUrl", "token": "xxxxx.yyyyy.zzzzz"}`  
-response - ```json{  
+response - ```{  
     "message": "The post is successfully created.",  
     "post": {  
         "postId": "123abc",  
@@ -66,7 +66,7 @@ response - ```json{
     }```
 
 Получение постов на модерацию - `POST api/v1/moderator/moderate`  
-request - ```json{
+request - ```{
     "posts": [
     {
      "postId": "123abc",
@@ -89,7 +89,7 @@ response - `{"message":"Balance successfully replenished."}`
 
 Запуск рекламной кампании - `POST api/v1/ad-campaigns/start`  
 request - `{"token": "xxxxx.yyyyy.zzzzz", "postId":"123cde", "price": 50.00, "duration": "24:00:00"}`  
-response - ```json{
+response - ```{
     "message": "The campaign is successfully created.", 
     "campaign": {
         "campaignId": "4w5l6jn4wlk5j6nw4lk56",
@@ -107,7 +107,7 @@ response - `{"message":"Ad campaign successfully stopped."}`
 response - `{"campaignId": "4w5l6jn4wlk5j6nw4lk56", "views": 1000, "clicks": 500, "conversions": 50}`
 
 Просмотр списка аналитики кампаний - GET api/v1/ad-campaigns/analytics  
-response - ```json{
+response - ```{
     "analytics": [
         {
          "campaignId": "4w5l6jn4wlk5j6nw4lk56",
