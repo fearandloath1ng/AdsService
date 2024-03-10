@@ -5,15 +5,19 @@ using AdsService.Application.Models.ValueObjects;
 public enum CheckResult
 {
     Approved,
-    Rejected
+    Rejected,
 }
 
 public class Check
 {
     public Guid Id { get; }
+
     public Moderator Moderator { get; }
+
     public Post Post { get; }
+
     public CheckResult Result { get; }
+
     public Reason Reason { get; }
 
     private Check(Post post, Moderator moderator, CheckResult result, Reason reason)
@@ -27,11 +31,11 @@ public class Check
 
     public static Check ApproveCheck(Post post, Moderator moderator)
     {
-        return new Check(post, moderator, true, default);
+        return new Check(post, moderator, CheckResult.Approved, default);
     }
 
     public static Check RejectCheck(Post post, Moderator moderator, Reason reason)
     {
-        return new Check(post, moderator, false, reason);
+        return new Check(post, moderator, CheckResult.Rejected, reason);
     }
 }
